@@ -1,0 +1,19 @@
+Java Help  us to read from a File System
+java.io
+
+/*
+ In the same student.xlsx file we need to add 3 new column and 4 new student
+
+ 1. Need to take user input of 4 students using Scanner and populate to the same excel file
+ 2. 3 new columns other than grade column need to after the grade column.
+    i. Student Location (need to update taking input from scanner, need to update for the existing students as well)
+    ii. Student Mobile (need to update taking scanner input, need to update the existing students as well)
+    iii. Student Roll Number
+        we need to evaluate the roll number
+        if grade == "A+" then rollNumber = 1
+        grade == "A" then rollNumber = 2
+        grade == "B" then rollNumber = 3
+        grade == "C" then rollNumber = 4
+        grade == "D" then rollNumber = 5
+
+*/
