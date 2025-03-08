@@ -29,6 +29,7 @@ public class AddTableData {
         }
     }
 
+    // method to add the vehicle data in database
     public static void addVehicleData(Connection connection, Scanner scanner) throws SQLException {
         List<TouristSpot> touristSpots = getAllTouristSpots(connection);
         if (touristSpots.isEmpty()) {
@@ -56,9 +57,10 @@ public class AddTableData {
 
     }
 
+    // method to add tourist data in database
     public static void addTouristData(Connection connection, Scanner scanner) throws SQLException {
-        List<Vechicle> vechicles = getAllVehicles(connection);
-        if (vechicles.isEmpty()) {
+        List<Vechicle> vehicles = getAllVehicles(connection);
+        if (vehicles.isEmpty()) {
             System.out.println("No vehicles found");
             return;
         }
@@ -66,7 +68,7 @@ public class AddTableData {
         int numberOfTourists = scanner.nextInt();
         List<Tourist> tourists = new ArrayList<>();
         for (int i = 0; i < numberOfTourists; i++) {
-            tourists.add(DataGenerator.getTouristData(scanner, vechicles));
+            tourists.add(DataGenerator.getTouristData(scanner, vehicles));
         }
         String insertQuery = "insert into tourist values(?,?,?,?,?)";
         PreparedStatement preparedStatement = connection.prepareStatement(insertQuery);
@@ -83,6 +85,7 @@ public class AddTableData {
 
     }
 
+    // method to add tourist spot in database
     public static void addTouristSpotData(Connection connection, Scanner scanner) throws SQLException {
         System.out.println("Enter number of tourist spot to be added: ");
         int numberOfTouristSpots = scanner.nextInt();
@@ -103,6 +106,7 @@ public class AddTableData {
 
     }
 
+    // get all the tourist spot data from the database
     public static List<TouristSpot> getAllTouristSpots(Connection connection) throws SQLException {
         Statement statement = connection.createStatement();
         ResultSet resultSet = statement.executeQuery("select *from tourist_spot");
@@ -114,6 +118,7 @@ public class AddTableData {
         return spots;
     }
 
+    // get all the vehicle type data from the database
     public static List<Vechicle> getAllVehicles(Connection connection) throws SQLException {
         Statement statement = connection.createStatement();
         ResultSet resultSet = statement.executeQuery("select *from vehicle");

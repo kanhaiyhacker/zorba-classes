@@ -7,7 +7,9 @@ import org.example.model.Vechicle;
 import java.util.Scanner;
 import java.util.List;
 
+// Data Generator class the get the user data from the user.
 public class DataGenerator {
+
     // get input form the user and return Vehicle
     public static Vechicle getVehicleData(Scanner scanner, List<TouristSpot> touristSpots) {
         System.out.println("Enter the id of the vehicle: ");
@@ -77,6 +79,7 @@ public class DataGenerator {
         return new TouristSpot(id, name);
     }
 
+    // show all the tourist spot data
     public static void showAllTouristSpot(List<TouristSpot> touristSpots) {
         System.out.println("**************************************");
         System.out.println("Available tourist spots: ");
@@ -86,6 +89,7 @@ public class DataGenerator {
         System.out.println("**************************************");
     }
 
+    // show all the vehicle type data
     public static void showAllVehicleType(List<Vechicle> vehicles) {
         System.out.println("**************************************");
         System.out.println("Available vehicles: ");
@@ -95,6 +99,7 @@ public class DataGenerator {
         System.out.println("**************************************");
     }
 
+    // check if the user enter tourist spot available in database
     public static TouristSpot checkTouristSpot(String touristSpot, List<TouristSpot> touristSpots) {
         for (TouristSpot spot : touristSpots) {
             if (touristSpot.equalsIgnoreCase(spot.getTouristSpotName())) {
@@ -104,6 +109,7 @@ public class DataGenerator {
         return null;
     }
 
+    // check if the user enter vehicle type available in database
     public static Vechicle checkVehicleType(String vehicleType, List<Vechicle> vehicles) {
         for (Vechicle vehicle : vehicles) {
             if (vehicleType.equalsIgnoreCase(vehicle.getVehicleType())) {
