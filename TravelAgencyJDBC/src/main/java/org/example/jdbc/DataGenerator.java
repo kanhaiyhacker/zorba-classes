@@ -44,7 +44,7 @@ public class DataGenerator {
         String name = scanner.nextLine();
         System.out.println("Enter the mobile number of the tourist  : ");
         int mobile = scanner.nextInt();
-
+        scanner.nextLine();
         showAllVehicleType(vechicles);
         System.out.println("Enter the vehicle type of the tourist: ");
         String vehicleType = scanner.nextLine();
