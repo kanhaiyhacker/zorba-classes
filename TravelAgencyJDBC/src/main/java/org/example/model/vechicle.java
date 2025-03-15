@@ -1,12 +1,12 @@
 package org.example.model;
 
-public class Vechicle {
+public class vechicle {
     private final int vehicleId;
     private final String VehicleType;
     private final String VehicleReg;
     private final int touristSpotId;
 
-    public Vechicle(int vehicleId, String vehicleType, String vehicleReg, int touristSpotId) {
+    public vechicle(int vehicleId, String vehicleType, String vehicleReg, int touristSpotId) {
         this.vehicleId = vehicleId;
         this.VehicleType = vehicleType;
         this.VehicleReg = vehicleReg;

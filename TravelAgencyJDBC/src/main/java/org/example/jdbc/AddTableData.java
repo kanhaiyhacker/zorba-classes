@@ -2,13 +2,14 @@ package org.example.jdbc;
 
 import org.example.model.Tourist;
 import org.example.model.TouristSpot;
-import org.example.model.Vechicle;
+import org.example.model.vechicle;
 import org.example.utility.DatabaseUtility;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.TreeSet;
 
 public class AddTableData {
     public static void main(String[] args) {
@@ -38,18 +39,17 @@ public class AddTableData {
         }
         System.out.println("Enter number of vehicles to be added: ");
         int numberOfVehicles = scanner.nextInt();
-        List<Vechicle> vehicles = new ArrayList<>();
+        List<vechicle> vehicles = new ArrayList<>();
         for (int i = 0; i < numberOfVehicles; i++) {
             vehicles.add(DataGenerator.getVehicleData(scanner, touristSpots));
         }
 
-        String insertQuery = "insert into vehicle values(?,?,?,?)";
+        String insertQuery = "insert into vehicle(vehicle_type, vehicle_reg, tourist_spot_id) values(?,?,?)";
         PreparedStatement preparedStatement = connection.prepareStatement(insertQuery);
-        for (Vechicle vehicle : vehicles) {
-            preparedStatement.setInt(1, vehicle.getVehicleId());
-            preparedStatement.setString(2, vehicle.getVehicleType());
-            preparedStatement.setString(3, vehicle.getVehicleReg());
-            preparedStatement.setInt(4, vehicle.getTouristSpotId());
+        for (vechicle vehicle : vehicles) {
+            preparedStatement.setString(1, vehicle.getVehicleType());
+            preparedStatement.setString(2, vehicle.getVehicleReg());
+            preparedStatement.setInt(3, vehicle.getTouristSpotId());
             int rowInserted = preparedStatement.executeUpdate();
             System.out.println(rowInserted + " Rows inserted...");
         }
@@ -59,25 +59,24 @@ public class AddTableData {
 
     // method to add tourist data in database
     public static void addTouristData(Connection connection, Scanner scanner) throws SQLException {
-        List<Vechicle> vehicles = getAllVehicles(connection);
-        if (vehicles.isEmpty()) {
-            System.out.println("No vehicles found");
+        List<TouristSpot> touristSpots = getAllTouristSpots(connection);
+        if (touristSpots.isEmpty()) {
+            System.out.println("No tourist spot found");
             return;
         }
         System.out.println("Enter number of tourist to be added: ");
         int numberOfTourists = scanner.nextInt();
         List<Tourist> tourists = new ArrayList<>();
         for (int i = 0; i < numberOfTourists; i++) {
-            tourists.add(DataGenerator.getTouristData(scanner, vehicles));
+            tourists.add(DataGenerator.getTouristData(scanner, touristSpots, connection));
         }
-        String insertQuery = "insert into tourist values(?,?,?,?,?)";
+        String insertQuery = "insert into tourist(tourist_name,address, mobile,vehicle_id) values(?,?,?,?)";
         PreparedStatement preparedStatement = connection.prepareStatement(insertQuery);
         for (Tourist tourist : tourists) {
-            preparedStatement.setInt(1, tourist.getTouristId());
-            preparedStatement.setString(2, tourist.getTouristName());
-            preparedStatement.setString(3, tourist.getAddress());
-            preparedStatement.setInt(4, tourist.getMobile());
-            preparedStatement.setInt(5, tourist.getVehicleId());
+            preparedStatement.setString(1, tourist.getTouristName());
+            preparedStatement.setString(2, tourist.getAddress());
+            preparedStatement.setInt(3, tourist.getMobile());
+            preparedStatement.setInt(4, tourist.getVehicleId());
             int rowInserted = preparedStatement.executeUpdate();
             System.out.println(rowInserted + " Rows inserted...");
         }
@@ -93,11 +92,10 @@ public class AddTableData {
         for (int i = 0; i < numberOfTouristSpots; i++) {
             touristSpots.add(DataGenerator.getTouristSpotData(scanner));
         }
-        String insertQuery = "insert into tourist_spot values(?,?)";
+        String insertQuery = "insert into tourist_spot(tourist_spot_name) values(?)";
         PreparedStatement preparedStatement = connection.prepareStatement(insertQuery);
         for (TouristSpot touristSpot : touristSpots) {
-            preparedStatement.setInt(1, touristSpot.getTouristSpotId());
-            preparedStatement.setString(2, touristSpot.getTouristSpotName());
+            preparedStatement.setString(1, touristSpot.getTouristSpotName());
             int rowInserted = preparedStatement.executeUpdate();
             System.out.println(rowInserted + " Rows inserted...");
         }
@@ -119,12 +117,12 @@ public class AddTableData {
     }
 
     // get all the vehicle type data from the database
-    public static List<Vechicle> getAllVehicles(Connection connection) throws SQLException {
+    public static List<vechicle> getAllVehicles(Connection connection) throws SQLException {
         Statement statement = connection.createStatement();
         ResultSet resultSet = statement.executeQuery("select *from vehicle");
-        List<Vechicle> spots = new ArrayList<>();
+        List<vechicle> spots = new ArrayList<>();
         while (resultSet.next()) {
-            spots.add(new Vechicle(
+            spots.add(new vechicle(
                     resultSet.getInt(1),
                     resultSet.getString(2),
                     resultSet.getString(3),
