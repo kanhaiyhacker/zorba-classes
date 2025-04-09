@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<hibernate-mapping xmlns="http://www.hibernate.org/xsd/hibernate-mapping">
+    <class name="org.example.xml_hibernate.model.Book" table="book">
+        <id name="bookId" column="book_id">
+            <generator class="increment"/>
+        </id>
+        <property name="bookTitle" column="book_title" length="250" unique="true"/>
+        <property name="bookAuthor" column="book_author" length="250"/>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping xmlns="http://www.hibernate.org/xsd/hibernate-mapping">
+    <class name="org.example.xml_hibernate.model.Employee" table="employee">
+        <id name="empId" column="empId" length="5">
+            <generator class="increment"/>
+        </id>
+        <property name="name" column="name" length="250"/>
+        <property name="salary" column="salary" length="10"/>
+        <property name="department" column="department" length="250"/>
+
+    </class>
+</hibernate-mapping>
