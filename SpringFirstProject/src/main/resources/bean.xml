@@ -1,0 +1,37 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd"
+       default-init-method="init" default-destroy-method="destroy">
+
+    <bean name="address" class="org.example.model.Address" scope="prototype">
+        <property name="addressId" value="2002"/>
+        <property name="area" value="Haltom City"/>
+        <property name="pinCode" value="76237"/>
+        <property name="country" value="USA"/>
+    </bean>
+
+
+    <bean name="vehicle" class="org.example.model.Vehicle">
+        <property name="vehicleId" value="1"/>
+        <property name="vehicleName" value="Nissan Altma"/>
+        <property name="vehicleType" value="Sedan"/>
+    </bean>
+
+    <bean name="destination" class="org.example.model.Destination">
+        <property name="destinationId" value="101"/>
+        <property name="name" value="Austin"/>
+        <property name="location" value="Austin Texas"/>
+        <constructor-arg name="address" ref="address"/>
+    </bean>
+
+    <bean name="driver" class="org.example.model.Driver" autowire="constructor">
+        <property name="driverId" value="404"/>
+        <property name="vehicle" ref="vehicle"/>
+        <property name="driverName" value="Kanhaiya Adhikari"/>
+        <property name="destination" ref="destination"/>
+    </bean>
+
+
+
+</beans>
