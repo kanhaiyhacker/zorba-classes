@@ -1,0 +1,10 @@
+Air Ticket booking System:
+--------------------------
+1. Registration of Passengers (Name, Mobile, address, username(uniq), password, national_security_id, role_type)
+2. Login to the portal (login page with Passenger) - Validation to check weather the myUser is selecting valid role.
+
+1. Registration as Admin (Name, Mobile, address,username(uniq), password, national_security_id, role_type)
+2. Login to the portal (login page as admin) - Validation to check weather the myUser is selecting valid role.
+
+User
+Role -> Admin, Passenger
